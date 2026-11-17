@@ -64,4 +64,4 @@ BloodBeacon is an AI-powered emergency blood donor activation system. When a pat
 
 ## Project Report
 
-The full project report is included in this repository: `BloodBeacon_Project_Report.pdf`
+The full project report is included in this repository: `BATCH_14_APP_PROJECT_REPORT.pdf`
