@@ -1,46 +1,67 @@
-# BloodBeacon — Emergency Blood-Donor Activation System
+# BloodBeacon
 
-A college project for an emergency blood-donor activation system that finds eligible donors nearby, predicts who is most likely to show up, and alerts them on WhatsApp in waves.
+**Blood, found faster.**
 
-## Quick Start
+BloodBeacon is an AI-powered emergency blood donor activation system. When a patient needs blood, it automatically finds eligible, compatible donors near the hospital, ranks them with a machine-learning model that predicts who is most likely to respond, and activates them one by one through a sequential WhatsApp cascade — no app install, no manual phone calls. A donor's phone number stays private until the donor confirms.
 
-1. Clone the repo and create a virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+**Live system:** https://bloodbeacon.onrender.com
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-3. Set up Supabase credentials (see SUPABASE_SETUP.md for details):
-   ```bash
-   cp .env.example .env
-   # Edit .env with your Supabase URL and service key
-   ```
+## Course Details
 
-4. Run the app locally:
-   ```bash
-   PORT=5001 python app.py
-   ```
+| | |
+|---|---|
+| **Course ID** | 21CSC203P |
+| **Course Name** | Advanced Programming Practice |
 
-Visit `http://localhost:5001` to access the app.
+## Team Members — Batch 14
 
-## Project Structure
+| Full Name | Register Number | Department | Section | Academic Year |
+|---|---|---|---|---|
+| Maniraj Sharma | RA2511003050513 | Computer Science and Engineering | C | 2026–27 (Second Year) |
+| Rohan Kumar Raut | RA2511003050516 | Computer Science and Engineering | C | 2026–27 (Second Year) |
+| Navnit Singh | RA2511003050517 | Computer Science and Engineering | C | 2026–27 (Second Year) |
+| Bikesh Kumar Kushwaha | RA2511003050536 | Computer Science and Engineering | C | 2026–27 (Second Year) |
 
-- `app.py` — Main Flask application
-- `db.py` — Single database access module for Supabase
-- `schema.sql` — Database schema (run in Supabase SQL editor)
-- `seed.py` — Seed script for test data
-- `templates/` — Jinja2 HTML templates
-- `tests/` — Test suite
+## Mentor Details
 
-## Stages
+| | |
+|---|---|
+| **Mentor's Full Name** | Dr. D. Deena Rose |
+| **Designation** | Assistant Professor, Department of Computer Science and Engineering |
 
-This project is built in 6 stages. See `BLOODBEACON_STATUS.md` for the current stage and progress.
+---
 
-## License
+## How It Works
 
-College project.
+1. A patient's family submits a blood request (group, hospital, city) on the web app.
+2. The **NBTC eligibility engine** filters donors by medical rules — age 18–65, weight, haemoglobin, and the mandatory donation gap.
+3. The **compatibility engine** matches blood groups using the red-cell (and plasma) compatibility matrix.
+4. The **ML Donor-Response Predictor** (Logistic Regression, scikit-learn) ranks the matched donors by predicted likelihood of responding.
+5. The **sequential cascade** asks donors one at a time on WhatsApp with a two-step consent conversation; the first confirmed donor's contact is shared with the receiver, who is also notified on WhatsApp on confirmation and fulfilment.
+
+## Key Features
+
+- Rule-based medical eligibility (AI never touches a medical rule)
+- Blood-group compatibility with tiered matching — same city first, then nearby cities, with cross-group disclosure
+- ML ranking of donors inside each tier
+- WhatsApp-first: works on any phone, no app install
+- Privacy-first: donor number revealed only after the donor confirms
+- Donor protection: monthly alert caps and donation-gap cooldowns prevent donor fatigue
+- Fully automatic public flow; staff console is passcode-gated and separate
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Python, Flask, Gunicorn |
+| Database | PostgreSQL (Supabase) |
+| Machine Learning | scikit-learn (Logistic Regression) |
+| Messaging | WhatsApp via a Node.js (Baileys) bridge |
+| Frontend | HTML, CSS, Jinja2 |
+| Hosting | Render |
+
+## Project Report
+
+The full project report is included in this repository: `BloodBeacon_Project_Report.pdf`
